@@ -1,14 +1,15 @@
 import streamlit as st
-
-st.title("Iris Prediction")
-
 import pickle
-model = pickle.load(open("model_iris.pkl", "rb"))
 
-sl = st.slider("SL", 2.0, 10.0)
-sw = st.slider("SW", 2.0, 10.0)
-pl = st.slider("PL", 2.0, 10.0)
-pw = st.slider("PW", 2.0, 10.0)
+st.title("Iris Prediction App")
+
+model = pickle.load(open("model_svm.pkl", "rb"))
+
+sl = st.slider("Sepal Length", 2.0, 10.0)
+sw = st.slider("Sepal Width", 2.0, 10.0)
+pl = st.slider("Petal Length", 2.0, 10.0)
+pw = st.slider("Petal Width", 2.0, 10.0)
 
 if st.button("Predict"):
-    st.success(model.predict([[sl, sw, pl, pw]]))
+    prediction = model.predict([[sl, sw, pl, pw]])
+    st.success(prediction)
